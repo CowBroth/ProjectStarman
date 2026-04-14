@@ -39,6 +39,17 @@
                 },
                 {
                     "name": "",
+                    "id": "966bec7b-176d-4650-95e6-e325a8638af3",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "9a433b2c-0b56-42e7-9330-44773c4f36ba",
                     "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
@@ -60,7 +71,7 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "WASD",
+                    "name": "Keys",
                     "id": "a5ad722e-bfc6-4a33-8f08-b29fd333cfe9",
                     "path": "Dpad",
                     "interactions": "",
