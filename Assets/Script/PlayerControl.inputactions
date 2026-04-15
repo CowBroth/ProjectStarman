@@ -17,11 +17,11 @@
                 },
                 {
                     "name": "Interact",
-                    "type": "PassThrough",
+                    "type": "Button",
                     "id": "585e4707-e6a2-48a4-a04e-ced95a68914d",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Press(behavior=1)",
+                    "interactions": "",
                     "initialStateCheck": false
                 }
             ],
@@ -30,7 +30,7 @@
                     "name": "",
                     "id": "60b58d4a-9bdf-44ab-b3b6-f8598ad1f631",
                     "path": "<Keyboard>/e",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Interact",

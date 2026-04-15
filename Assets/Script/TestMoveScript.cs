@@ -6,6 +6,7 @@ public class TestMoveScript : MonoBehaviour
 {
     public float m_speed;
     private int m_lookdirection;
+    public bool npc_present;
     private string[] m_lookdirectionString = {"up", "right", "down", "left"};
 
     private InputAction ctrl_move;
@@ -13,6 +14,8 @@ public class TestMoveScript : MonoBehaviour
     private SpriteLibrary sprite_library;
     private SpriteRenderer sprite_renderer;
     private CircleCollider2D obj_interact;
+
+    private GameObject interact_target;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -37,7 +40,11 @@ public class TestMoveScript : MonoBehaviour
         {
             SpriteChange(moveValue);
         }
-
+        if (ctrl_interact.WasPressedThisFrame())
+        {
+            InteractTrigger(interact_target);
+        }
+        interact_target = null;
     }
 
     void SpriteChange(Vector2 value)
@@ -68,9 +75,22 @@ public class TestMoveScript : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.collider.gameObject.CompareTag("NPC") && ctrl_interact.IsPressed())
+        if (collision.gameObject.layer == 6)
         {
-            collision.gameObject.GetComponent<NPC>().TriggerDialogue();
+           interact_target = collision.gameObject;
+        }
+    }
+
+    public void InteractTrigger(GameObject npc)
+    {
+        if (npc != null)
+        {
+            npc.GetComponent<NPC>().TriggerDialogue();
+            Debug.Log("buh");
+        }
+        else
+        {
+            Debug.Log("dih");
         }
     }
 }

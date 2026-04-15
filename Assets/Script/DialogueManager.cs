@@ -16,6 +16,8 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
+        //Time.timeScale = 0;
+
         nameText.text = dialogue.name;
 
         sentences.Clear();
@@ -25,7 +27,7 @@ public class DialogueManager : MonoBehaviour
             sentences.Enqueue(sentence); 
         }
 
-        DisplayNextSentence();
+        //DisplayNextSentence();
     }
 
     public void DisplayNextSentence()
