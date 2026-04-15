@@ -103,11 +103,11 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Interact"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""585e4707-e6a2-48a4-a04e-ced95a68914d"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": ""Press(behavior=1)"",
                     ""initialStateCheck"": false
                 }
             ],
@@ -157,7 +157,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""Keys"",
+                    ""name"": ""WASD"",
                     ""id"": ""a5ad722e-bfc6-4a33-8f08-b29fd333cfe9"",
                     ""path"": ""Dpad"",
                     ""interactions"": """",
