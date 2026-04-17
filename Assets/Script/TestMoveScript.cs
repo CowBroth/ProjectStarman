@@ -6,7 +6,6 @@ public class TestMoveScript : MonoBehaviour
 {
     public float m_speed;
     private int m_lookdirection;
-    public bool npc_present;
     private string[] m_lookdirectionString = {"up", "right", "down", "left"};
 
     private InputAction ctrl_move;
@@ -15,7 +14,7 @@ public class TestMoveScript : MonoBehaviour
     private SpriteRenderer sprite_renderer;
     private CircleCollider2D obj_interact;
 
-    private GameObject interact_target;
+    public GameObject interact_target;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -33,18 +32,26 @@ public class TestMoveScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (DialogueManager.active == true)
+        {
+            if (ctrl_interact.triggered)
+            {
+                FindFirstObjectByType<DialogueManager>().DisplayNextSentence();
+            }
+            return;
+        }
         Vector2 moveValue = ctrl_move.ReadValue<Vector2>();
-        transform.Translate(moveValue * m_speed * Time.fixedDeltaTime); //FIX THIS IT MOVES SLOW
+
+        transform.Translate(moveValue * m_speed * Time.deltaTime);
 
         if (moveValue != Vector2.zero)
         {
             SpriteChange(moveValue);
         }
-        if (ctrl_interact.WasPressedThisFrame())
+        if (ctrl_interact.triggered)
         {
             InteractTrigger(interact_target);
         }
-        interact_target = null;
     }
 
     void SpriteChange(Vector2 value)
@@ -75,15 +82,17 @@ public class TestMoveScript : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == 6)
-        {
-           interact_target = collision.gameObject;
-        }
+        interact_target = collision.gameObject;
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        interact_target = null;
     }
 
     public void InteractTrigger(GameObject npc)
     {
-        if (npc != null)
+        if (npc != null && npc.layer == 6)
         {
             npc.GetComponent<NPC>().TriggerDialogue();
             Debug.Log("buh");

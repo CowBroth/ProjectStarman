@@ -4,19 +4,23 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
+    public GameObject dialogueBox;
     public Text nameText;
     public Text dialogueText;
 
     public Queue<string> sentences;
 
+    public static bool active;
+
     void Start()
     {
         sentences = new Queue<string>();
+        active = false; 
     }
 
     public void StartDialogue(Dialogue dialogue)
     {
-        //Time.timeScale = 0;
+        active = true;
 
         nameText.text = dialogue.name;
 
@@ -27,7 +31,7 @@ public class DialogueManager : MonoBehaviour
             sentences.Enqueue(sentence); 
         }
 
-        //DisplayNextSentence();
+        DisplayNextSentence();
     }
 
     public void DisplayNextSentence()
@@ -46,5 +50,6 @@ public class DialogueManager : MonoBehaviour
     void EndDialogue()
     {
         Debug.Log("End of conversation :(");
+        active = false;
     }
 }

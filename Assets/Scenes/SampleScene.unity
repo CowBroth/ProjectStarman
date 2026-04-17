@@ -307,8 +307,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 900cde50a9955334582f28ff8adad515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  m_speed: 0.33
-  npc_present: 0
+  m_speed: 3
+  interact_target: {fileID: 0}
 --- !u!212 &474178647
 SpriteRenderer:
   serializedVersion: 2
