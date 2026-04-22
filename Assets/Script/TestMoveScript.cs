@@ -4,6 +4,8 @@ using UnityEngine.U2D.Animation;
 
 public class TestMoveScript : MonoBehaviour
 {
+    public Stats stats;
+
     public float m_speed;
     private int m_lookdirection;
     private string[] m_lookdirectionString = {"up", "right", "down", "left"};

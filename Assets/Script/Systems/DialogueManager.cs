@@ -18,6 +18,11 @@ public class DialogueManager : MonoBehaviour
         active = false; 
     }
 
+    private void Update()
+    {
+        dialogueBox.SetActive(active);
+    }
+
     public void StartDialogue(Dialogue dialogue)
     {
         active = true;
