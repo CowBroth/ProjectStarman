@@ -29,6 +29,8 @@ public class TestMoveScript : MonoBehaviour
         obj_interact = GetComponent<CircleCollider2D>();
 
         sprite_renderer.sprite = sprite_library.GetSprite("Direction", "t_north");
+
+        stats = ManagerScript.instance.playerStats;
     }
 
     // Update is called once per frame
@@ -44,7 +46,7 @@ public class TestMoveScript : MonoBehaviour
         }
         Vector2 moveValue = ctrl_move.ReadValue<Vector2>();
 
-        transform.Translate(moveValue * m_speed * Time.deltaTime);
+        transform.Translate(m_speed * Time.deltaTime * moveValue);
 
         if (moveValue != Vector2.zero)
         {
@@ -84,6 +86,7 @@ public class TestMoveScript : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
+        //if (collision.gameObject.layer == )
         interact_target = collision.gameObject;
     }
 
@@ -97,11 +100,10 @@ public class TestMoveScript : MonoBehaviour
         if (npc != null && npc.layer == 6)
         {
             npc.GetComponent<NPC>().TriggerDialogue();
-            Debug.Log("buh");
         }
         else
         {
-            Debug.Log("dih");
+            
         }
     }
 }
