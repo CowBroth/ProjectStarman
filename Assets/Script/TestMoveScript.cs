@@ -86,7 +86,10 @@ public class TestMoveScript : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        //if (collision.gameObject.layer == )
+        if (collision.gameObject.layer == 7)
+        {
+            ManagerScript.instance.BattleScene(collision.gameObject.GetComponent<EnemyScript>().stats);
+        }
         interact_target = collision.gameObject;
     }
 

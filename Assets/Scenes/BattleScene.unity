@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 69388123}
   - component: {fileID: 69388122}
   - component: {fileID: 69388121}
+  - component: {fileID: 69388125}
   m_Layer: 5
   m_Name: PSIButton
   m_TagString: Untagged
@@ -185,6 +186,18 @@ MonoBehaviour:
       - m_Target: {fileID: 729199018}
         m_TargetAssemblyTypeName: UiNavigation, Assembly-CSharp
         m_MethodName: OnSelect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 729199018}
+        m_TargetAssemblyTypeName: UiNavigation, Assembly-CSharp
+        m_MethodName: TriggerDialogue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -252,6 +265,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 30}
   m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &69388125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69388120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f3a8ebb15f0cb54884e8d834a38cc02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NPC
+  dialogue:
+    name: 
+    sentences:
+    - Hero tried GALE Cut!
 --- !u!1 &194448313
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,6 +293,7 @@ GameObject:
   - component: {fileID: 194448317}
   - component: {fileID: 194448316}
   - component: {fileID: 194448315}
+  - component: {fileID: 194448318}
   m_Layer: 5
   m_Name: DefendButton
   m_TagString: Untagged
@@ -347,6 +377,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 729199018}
+        m_TargetAssemblyTypeName: UiNavigation, Assembly-CSharp
+        m_MethodName: TriggerDialogue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &194448316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -385,6 +427,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 194448313}
   m_CullTransparentMesh: 1
+--- !u!114 &194448318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 194448313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f3a8ebb15f0cb54884e8d834a38cc02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NPC
+  dialogue:
+    name: 
+    sentences:
+    - Hero is defending!
 --- !u!1 &488432613
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,7 +582,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &662936056
 RectTransform:
   m_ObjectHideFlags: 0
@@ -677,6 +735,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UiNavigation
   eventSystem: {fileID: 1215090125}
   firstToSelect: {fileID: 1310168301}
+--- !u!1 &887604244
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 887604246}
+  - component: {fileID: 887604245}
+  m_Layer: 0
+  m_Name: Turn-Based Combat
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &887604245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887604244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22dc6ff40307f484fb9f1bd717cf10c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CombatScript
+--- !u!4 &887604246
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887604244}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.27418, y: -1.75703, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &993711980
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,7 +903,7 @@ MonoBehaviour:
   m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
   m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
   m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_DeselectOnBackgroundClick: 1
+  m_DeselectOnBackgroundClick: 0
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
   m_ScrollDeltaPerTick: 6
@@ -847,6 +949,7 @@ GameObject:
   - component: {fileID: 1310168304}
   - component: {fileID: 1310168303}
   - component: {fileID: 1310168302}
+  - component: {fileID: 1310168306}
   m_Layer: 5
   m_Name: AttackButton
   m_TagString: Untagged
@@ -901,6 +1004,18 @@ MonoBehaviour:
       - m_Target: {fileID: 729199018}
         m_TargetAssemblyTypeName: UiNavigation, Assembly-CSharp
         m_MethodName: OnSelect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 729199018}
+        m_TargetAssemblyTypeName: UiNavigation, Assembly-CSharp
+        m_MethodName: TriggerDialogue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -968,6 +1083,22 @@ RectTransform:
   m_AnchoredPosition: {x: -175, y: 30}
   m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1310168306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1310168301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f3a8ebb15f0cb54884e8d834a38cc02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NPC
+  dialogue:
+    name: 
+    sentences:
+    - Hero attacks!
 --- !u!1 &1386539456
 GameObject:
   m_ObjectHideFlags: 0
@@ -1709,3 +1840,4 @@ SceneRoots:
   - {fileID: 488432615}
   - {fileID: 1386539460}
   - {fileID: 1215090126}
+  - {fileID: 887604246}

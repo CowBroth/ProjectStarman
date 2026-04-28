@@ -7,7 +7,7 @@ public class ManagerScript : MonoBehaviour
     public static ManagerScript instance;
     public Stats playerStats;
     
-    public void BattleScene()
+    public void BattleScene(Stats enemyStats)
     {
         SceneManager.LoadScene(1);
     }
