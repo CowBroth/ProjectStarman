@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class CombatScript : MonoBehaviour
 {
     private InputAction ctrl_interact;
+    public static int battleTurn;
 
     void Start()
     {
@@ -16,9 +17,17 @@ public class CombatScript : MonoBehaviour
         {
             if (ctrl_interact.triggered)
             {
-                FindFirstObjectByType<DialogueManager>().DisplayNextSentence();
+                FindFirstObjectByType<DialogueManager>().Invoke("DisplayNextSentence", 1.5f);
+                battleTurn = 2;
+                EnemyTurn();
             }
             return;
         }
+    }
+
+    void EnemyTurn()
+    {
+        FindFirstObjectByType<DialogueManager>().Invoke("DisplayNextSentence", 1.5f);
+
     }
 }

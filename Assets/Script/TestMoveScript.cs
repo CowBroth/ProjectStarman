@@ -8,7 +8,7 @@ public class TestMoveScript : MonoBehaviour
 
     public float m_speed;
     private int m_lookdirection;
-    private string[] m_lookdirectionString = {"up", "right", "down", "left"};
+    //private string[] m_lookdirectionString = {"up", "right", "down", "left"};
 
     private InputAction ctrl_move;
     private InputAction ctrl_interact;
@@ -102,7 +102,7 @@ public class TestMoveScript : MonoBehaviour
     {
         if (npc != null && npc.layer == 6)
         {
-            npc.GetComponent<NPC>().TriggerDialogue();
+            npc.GetComponent<Dialogue>().TriggerDialogue();
         }
         else
         {

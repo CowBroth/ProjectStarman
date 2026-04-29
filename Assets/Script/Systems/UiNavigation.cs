@@ -14,7 +14,7 @@ public class UiNavigation : MonoBehaviour
     {
         eventSystem.SetSelectedGameObject(firstToSelect);
     }
-    void Start()
+    private void Start()
     {
         ctrl_interact = InputSystem.actions.FindAction("Interact");
     }
@@ -31,11 +31,7 @@ public class UiNavigation : MonoBehaviour
     }
     public void OnSelect()
     {
-        gameObject.SetActive(false);   
-    }
-
-    public void TriggerDialogue()
-    {
-        FindFirstObjectByType<DialogueManager>().StartDialogue(eventSystem.currentSelectedGameObject.GetComponent<NPC>().dialogue);
+        FindFirstObjectByType<DialogueManager>().StartDialogue(eventSystem.currentSelectedGameObject.GetComponent<Dialogue>().dialogue);
+        gameObject.SetActive(false);
     }
 }

@@ -23,7 +23,7 @@ public class DialogueManager : MonoBehaviour
         dialogueBox.SetActive(active);
     }
 
-    public void StartDialogue(Dialogue dialogue)
+    public void StartDialogue(BaseText dialogue)
     {
         active = true;
 

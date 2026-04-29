@@ -51,7 +51,7 @@
                 {
                     "name": "",
                     "id": "9a433b2c-0b56-42e7-9330-44773c4f36ba",
-                    "path": "<Gamepad>/buttonNorth",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -172,7 +172,7 @@
                 {
                     "name": "",
                     "id": "0cd5a254-99ee-4c55-b828-54fc02b64c71",
-                    "path": "<XRController>/{Primary2DAxis}",
+                    "path": "<Gamepad>/dpad",
                     "interactions": "",
                     "processors": "",
                     "groups": "XR",

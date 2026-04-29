@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class NPC : MonoBehaviour
+public class Dialogue : MonoBehaviour
 {
-    public Dialogue dialogue;
+    public BaseText dialogue;
     public void TriggerDialogue()
     {
         FindFirstObjectByType<DialogueManager>().StartDialogue(dialogue);
