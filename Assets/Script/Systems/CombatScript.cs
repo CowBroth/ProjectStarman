@@ -3,6 +3,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public enum BattleState
 {
@@ -42,6 +43,7 @@ public class CombatScript : MonoBehaviour
 
     IEnumerator BattleSetup()
     {
+        enemyPrefab = ManagerScript.instance.prefab;
         Instantiate(enemyPrefab);
         playerStats = ManagerScript.instance.playerStats;
         enemyStats = ManagerScript.instance.enemyStats;
@@ -71,18 +73,24 @@ public class CombatScript : MonoBehaviour
         }*/
     }
 
-    IEnumerator PlayerAttack()
+    IEnumerator PlayerAttack(int a = 0)
     {
+        
         state = BattleState.ACTION;
         yield return new WaitForSeconds(2f);
 
-        int damageValue = DamageCalculation(playerStats, enemyStats);
-        print("DMG: " + damageValue + " HP: " + enemyHealth);
+
+        enemyHealth -= DamageCalculation(playerStats, a += playerStats.attack, enemyStats);
+        print("Enem HP: " + enemyHealth);
         yield return new WaitForSeconds(1f);
         //check enemy dead
         if (enemyHealth <= 0)
         {
             state = BattleState.WON;
+            enemyPrefab.GetComponent<BattleDialogue>().TriggerDialogue(5);
+            yield return new WaitForSeconds(3f);
+            ManagerScript.instance.LevelUp();
+            SceneManager.LoadScene(0);
         }
         else
         {
@@ -104,6 +112,10 @@ public class CombatScript : MonoBehaviour
         {
             StartCoroutine(PlayerAttack());
         }
+        if (turn == 1)
+        {
+            StartCoroutine(PlayerAttack(4));
+        }
         Debug.Log("ello");
     }
 
@@ -117,16 +129,52 @@ public class CombatScript : MonoBehaviour
     {
         int enemyTurn = UnityEngine.Random.Range(1, 3);
         enemyPrefab.GetComponent<BattleDialogue>().TriggerDialogue(enemyTurn);
+        playerHealth -= EnemyDamageCalculation(enemyStats, enemyTurn, playerStats);
+        if (playerHealth <= 0)
+        {
+            state = BattleState.LOST;
+            enemyPrefab.GetComponent<BattleDialogue>().TriggerDialogue(4);
+            yield return new WaitForSeconds(3f);
+            Application.Quit();
+        }
         yield return new WaitForSeconds(3f);
         state = BattleState.PLAYERTURN;
     }
 
-    public int DamageCalculation(Stats attacker, Stats defender)
+    public int DamageCalculation(Stats attacker, float attack, Stats defender)
     {
         int output = 0;
 
         //base dmg
-        float baseDMG = attacker.attack - (defender.defense / 2);
+        float baseDMG = attack - (defender.defense / 2);
+        int variation = UnityEngine.Random.Range(-3, 3);
+        baseDMG += variation;
+
+        //crit check
+        bool isCritical = UnityEngine.Random.value < (attacker.luck / 10);
+        if (isCritical)
+        {
+            baseDMG = Mathf.Round(baseDMG * 1.5f);
+        }
+        //output
+        output = Convert.ToInt32(baseDMG);
+        return output;
+    }
+    public int EnemyDamageCalculation(Stats attacker, int move, Stats defender)
+    {
+        int output = 0;
+        int dmgIncrease = 0;
+
+        if (move == 2)
+        {
+            dmgIncrease = 3;
+        }
+        if (move == 3)
+        {
+            dmgIncrease -= attacker.attack;
+        }
+        //base dmg
+        float baseDMG = attacker.attack + dmgIncrease - (defender.defense / 2);
         int variation = UnityEngine.Random.Range(-3, 3);
         baseDMG += variation;
 

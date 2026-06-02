@@ -780,7 +780,7 @@ MonoBehaviour:
     defense: 0
     luck: 0
   state: 0
-  enemyPrefab: {fileID: 8991274689038625165, guid: 8fa5970a534f1d745b279af7a71cc3cc, type: 3}
+  enemyPrefab: {fileID: 0}
   menuBox: {fileID: 729199014}
 --- !u!4 &887604246
 Transform:

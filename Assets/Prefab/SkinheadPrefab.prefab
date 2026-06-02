@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5674315415781353557}
   - component: {fileID: 4079826195974832816}
   m_Layer: 0
-  m_Name: Enemy Portrait
+  m_Name: SkinheadPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -3210740049446294548, guid: 8b0b46381b7b2964ebc70ba5ab9137d9, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -90,7 +90,7 @@ SpriteRenderer:
   m_Size: {x: 3.0400002, y: 2.1503294}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!114 &4079826195974832816
 MonoBehaviour:
@@ -110,6 +110,6 @@ MonoBehaviour:
     - Skinhead is mugging you!
     - Skinhead threw a hook!
     - "Skinhead brandished a knife!\t\t"
-    - Skinhead is reeling!
+    - Skinhead is reeling.
     - You lost
     - 'You won '

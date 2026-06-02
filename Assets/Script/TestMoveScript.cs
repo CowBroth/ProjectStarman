@@ -88,7 +88,7 @@ public class TestMoveScript : MonoBehaviour
     {
         if (collision.gameObject.layer == 7)
         {
-            ManagerScript.instance.BattleScene(collision.gameObject.GetComponent<EnemyScript>().stats);
+            ManagerScript.instance.BattleScene(collision.gameObject.GetComponent<EnemyScript>().stats, collision.gameObject.GetComponent<EnemyScript>().prefab);
         }
         interact_target = collision.gameObject;
     }
