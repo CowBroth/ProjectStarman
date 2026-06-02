@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,7 +16,7 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
         sentences = new Queue<string>();
-        active = false; 
+        active = false;
     }
 
     private void Update()
@@ -38,6 +39,16 @@ public class DialogueManager : MonoBehaviour
 
         DisplayNextSentence();
     }
+    
+    public void StartBattleDialogue(string dialogue)
+    {
+        Debug.Log("start");
+        active = true;
+        sentences.Clear();
+        //sentences.Enqueue(dialogue); 
+        dialogueText.text = dialogue;
+        StartCoroutine(DisplayTimer());
+    }
 
     public void DisplayNextSentence()
     {
@@ -56,5 +67,11 @@ public class DialogueManager : MonoBehaviour
     {
         Debug.Log("End of conversation :(");
         active = false;
+    }
+
+    IEnumerator DisplayTimer()
+    {
+        yield return new WaitForSeconds(2f);
+        EndDialogue();
     }
 }

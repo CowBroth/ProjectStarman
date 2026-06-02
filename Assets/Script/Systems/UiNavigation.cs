@@ -31,7 +31,7 @@ public class UiNavigation : MonoBehaviour
     }
     public void OnSelect()
     {
-        FindFirstObjectByType<DialogueManager>().StartDialogue(eventSystem.currentSelectedGameObject.GetComponent<Dialogue>().dialogue);
+        //FindFirstObjectByType<DialogueManager>().StartDialogue(eventSystem.currentSelectedGameObject.GetComponent<Dialogue>().dialogue);
         gameObject.SetActive(false);
     }
 }
