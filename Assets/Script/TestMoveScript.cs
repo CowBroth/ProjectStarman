@@ -15,6 +15,7 @@ public class TestMoveScript : MonoBehaviour
     private SpriteLibrary sprite_library;
     private SpriteRenderer sprite_renderer;
     private CircleCollider2D obj_interact;
+    private Animator anim;
 
     public GameObject interact_target;
 
@@ -27,8 +28,9 @@ public class TestMoveScript : MonoBehaviour
         sprite_library = GetComponent<SpriteLibrary>();
         sprite_renderer = GetComponent<SpriteRenderer>();
         obj_interact = GetComponent<CircleCollider2D>();
+        anim = GetComponent<Animator>();
 
-        sprite_renderer.sprite = sprite_library.GetSprite("Direction", "t_north");
+        sprite_renderer.sprite = sprite_library.GetSprite("EwanLib", "E_WalkD");
 
         stats = ManagerScript.instance.playerStats;
     }
@@ -50,38 +52,46 @@ public class TestMoveScript : MonoBehaviour
 
         if (moveValue != Vector2.zero)
         {
+            anim.SetBool("IsMoving", true);
             SpriteChange(moveValue);
+        }
+        else
+        {
+            anim.SetBool("IsMoving", false);
         }
         if (ctrl_interact.triggered)
         {
             InteractTrigger(interact_target);
         }
+        //anim.SetBool("IsMoving", moveValue != Vector2.zero);
+        //anim.SetInteger("LookDirection", m_lookdirection);
     }
 
     void SpriteChange(Vector2 value)
     {
         if (value == Vector2.up)
         {
-            sprite_renderer.sprite = sprite_library.GetSprite("Direction", "t_north");
+            sprite_renderer.sprite = sprite_library.GetSprite("EwanLib", "E_WalkU");
             m_lookdirection = 0;
         }
         else if (value == Vector2.right)
         {
-            sprite_renderer.sprite = sprite_library.GetSprite("Direction", "t_east");
+            sprite_renderer.sprite = sprite_library.GetSprite("EwanLib", "E_WalkR");
             m_lookdirection = 1;
         }
         else if (value == Vector2.down)
         {
-            sprite_renderer.sprite = sprite_library.GetSprite("Direction", "t_south");
+            sprite_renderer.sprite = sprite_library.GetSprite("EwanLib", "E_WalkD");
             m_lookdirection = 2;
         }
         else if (value == Vector2.left)
         {
-            sprite_renderer.sprite = sprite_library.GetSprite("Direction", "t_west");
+            sprite_renderer.sprite = sprite_library.GetSprite("EwanLib", "E_WalkL");
             m_lookdirection = 3;
         }
         //Debug.Log(m_lookdirectionString[m_lookdirection] + " " + value);
         obj_interact.offset = value;
+        anim.SetInteger("LookDirection", m_lookdirection);
     }
 
     private void OnCollisionStay2D(Collision2D collision)

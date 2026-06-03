@@ -13,37 +13,57 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteLibrarySourceAsset
   m_Library:
-  - m_Name: New Category
-    m_Hash: 259530823
+  - m_Name: EwanLib
+    m_Hash: 215007786
     m_CategoryList: []
     m_OverrideEntries:
-    - m_Name: Ewan_0
-      m_Hash: 1066140120
+    - m_Name: E_WalkD
+      m_Hash: 157006238
       m_Sprite: {fileID: 2520780237085149367, guid: 63d3004066ff4fd4a99e400308819701, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: 2520780237085149367, guid: 63d3004066ff4fd4a99e400308819701, type: 3}
-    - m_Name: Ewan_WalkD_0
-      m_Hash: 467148878
+    - m_Name: E_WalkD2
+      m_Hash: 229334007
       m_Sprite: {fileID: 3512606078861289271, guid: d37655a688043284da16985605a34c16, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: 3512606078861289271, guid: d37655a688043284da16985605a34c16, type: 3}
-    - m_Name: Ewan_WalkSide_0
-      m_Hash: 972200011
-      m_Sprite: {fileID: 418084119333312299, guid: db05acd82041f7b4fbcbc16a26192d40, type: 3}
+    - m_Name: E_WalkD3
+      m_Hash: 984378209
+      m_Sprite: {fileID: 2472336049835003065, guid: d860c258a02d54d4eace8df4bf18e74a, type: 3}
       m_FromMain: 0
-      m_SpriteOverride: {fileID: 418084119333312299, guid: db05acd82041f7b4fbcbc16a26192d40, type: 3}
-    - m_Name: Ewan_WalkSide2_0
-      m_Hash: 923179706
-      m_Sprite: {fileID: -3978513498928292194, guid: 7980a9833a46f3347b302405715e5862, type: 3}
-      m_FromMain: 0
-      m_SpriteOverride: {fileID: -3978513498928292194, guid: 7980a9833a46f3347b302405715e5862, type: 3}
-    - m_Name: Ewan_WalkU_0
-      m_Hash: 104655113
+      m_SpriteOverride: {fileID: 2472336049835003065, guid: d860c258a02d54d4eace8df4bf18e74a, type: 3}
+    - m_Name: E_WalkU
+      m_Hash: 602642796
       m_Sprite: {fileID: 792418012261658485, guid: d4935c33707f0674ea253fb14a376cff, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: 792418012261658485, guid: d4935c33707f0674ea253fb14a376cff, type: 3}
+    - m_Name: E_WalkU2
+      m_Hash: 510818535
+      m_Sprite: {fileID: 4257239827739252546, guid: 6afc32dcf8e8af8498fa89d4d33db6bf, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 4257239827739252546, guid: 6afc32dcf8e8af8498fa89d4d33db6bf, type: 3}
+    - m_Name: E_WalkL
+      m_Hash: 125841836
+      m_Sprite: {fileID: 5616371829781783473, guid: 965eb3cd69651514187cf24c972d1ed6, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 5616371829781783473, guid: 965eb3cd69651514187cf24c972d1ed6, type: 3}
+    - m_Name: E_WalkL2
+      m_Hash: 91410943
+      m_Sprite: {fileID: 4534328998216257593, guid: 2467ee8aed1df924bb54d12c85654df4, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 4534328998216257593, guid: 2467ee8aed1df924bb54d12c85654df4, type: 3}
+    - m_Name: E_WalkR
+      m_Hash: 1032785103
+      m_Sprite: {fileID: 3159755093650726571, guid: 87729221d13323d4da096636958deee1, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 3159755093650726571, guid: 87729221d13323d4da096636958deee1, type: 3}
+    - m_Name: E_WalkR2
+      m_Hash: 288615968
+      m_Sprite: {fileID: 7650482744919064728, guid: 736d3294e16f7604d826ae0f313abe5b, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 7650482744919064728, guid: 736d3294e16f7604d826ae0f313abe5b, type: 3}
     m_FromMain: 0
-    m_EntryOverrideCount: 5
+    m_EntryOverrideCount: 9
   m_PrimaryLibraryGUID: 
-  m_ModificationHash: 639159968681074965
+  m_ModificationHash: 639160779657828273
   m_Version: 1
