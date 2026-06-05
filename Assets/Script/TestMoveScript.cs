@@ -14,8 +14,8 @@ public class TestMoveScript : MonoBehaviour
     private InputAction ctrl_interact;
     private SpriteLibrary sprite_library;
     private SpriteRenderer sprite_renderer;
-    private CircleCollider2D obj_interact;
-    private BoxCollider2D boxColl;
+    private BoxCollider2D obj_interact;
+    private Rigidbody2D rb;
     private Animator anim;
 
     public GameObject interact_target;
@@ -28,8 +28,8 @@ public class TestMoveScript : MonoBehaviour
 
         sprite_library = GetComponent<SpriteLibrary>();
         sprite_renderer = GetComponent<SpriteRenderer>();
-        obj_interact = GetComponent<CircleCollider2D>();
-        boxColl = GetComponent<BoxCollider2D>();
+        obj_interact = GetComponent<BoxCollider2D>();
+        rb = GetComponent<Rigidbody2D>();
 
         anim = GetComponent<Animator>();
 
@@ -51,9 +51,7 @@ public class TestMoveScript : MonoBehaviour
         }
         Vector2 moveValue = ctrl_move.ReadValue<Vector2>();
 
-        transform.Translate(m_speed * Time.deltaTime * moveValue);
-        //boxColl.Move(m_speed * Time.deltaTime * moveValue);
-        
+        rb.linearVelocity = new Vector2(moveValue.x, moveValue.y).normalized * m_speed;
 
         if (moveValue != Vector2.zero)
         {
@@ -95,7 +93,6 @@ public class TestMoveScript : MonoBehaviour
             m_lookdirection = 3;
         }
         //Debug.Log(m_lookdirectionString[m_lookdirection] + " " + value);
-        obj_interact.offset = value;
         anim.SetInteger("LookDirection", m_lookdirection);
     }
 
@@ -117,6 +114,7 @@ public class TestMoveScript : MonoBehaviour
     {
         if (npc != null && npc.layer == 6)
         {
+            rb.linearVelocity = Vector2.zero;
             npc.GetComponent<Dialogue>().TriggerDialogue();
         }
         else
