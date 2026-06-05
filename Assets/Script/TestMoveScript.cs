@@ -15,6 +15,7 @@ public class TestMoveScript : MonoBehaviour
     private SpriteLibrary sprite_library;
     private SpriteRenderer sprite_renderer;
     private CircleCollider2D obj_interact;
+    private BoxCollider2D boxColl;
     private Animator anim;
 
     public GameObject interact_target;
@@ -28,6 +29,8 @@ public class TestMoveScript : MonoBehaviour
         sprite_library = GetComponent<SpriteLibrary>();
         sprite_renderer = GetComponent<SpriteRenderer>();
         obj_interact = GetComponent<CircleCollider2D>();
+        boxColl = GetComponent<BoxCollider2D>();
+
         anim = GetComponent<Animator>();
 
         sprite_renderer.sprite = sprite_library.GetSprite("EwanLib", "E_WalkD");
@@ -49,6 +52,8 @@ public class TestMoveScript : MonoBehaviour
         Vector2 moveValue = ctrl_move.ReadValue<Vector2>();
 
         transform.Translate(m_speed * Time.deltaTime * moveValue);
+        //boxColl.Move(m_speed * Time.deltaTime * moveValue);
+        
 
         if (moveValue != Vector2.zero)
         {
