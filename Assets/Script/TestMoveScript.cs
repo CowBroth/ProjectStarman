@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.U2D.Animation;
@@ -7,6 +8,7 @@ public class TestMoveScript : MonoBehaviour
     public Stats stats;
 
     public float m_speed;
+    public bool canBattle;
     private int m_lookdirection;
     //private string[] m_lookdirectionString = {"up", "right", "down", "left"};
 
@@ -36,6 +38,8 @@ public class TestMoveScript : MonoBehaviour
         sprite_renderer.sprite = sprite_library.GetSprite("EwanLib", "E_WalkD");
 
         stats = ManagerScript.instance.playerStats;
+        transform.position = ManagerScript.instance.position;
+        StartCoroutine(EnemDespawn());
     }
 
     // Update is called once per frame
@@ -70,6 +74,12 @@ public class TestMoveScript : MonoBehaviour
         //anim.SetInteger("LookDirection", m_lookdirection);
     }
 
+    public IEnumerator EnemDespawn()
+    {
+        canBattle = false;
+        yield return new WaitForSeconds(0.5f);
+        canBattle = true;
+    }
     void SpriteChange(Vector2 value)
     {
         if (value == Vector2.up)
@@ -100,7 +110,14 @@ public class TestMoveScript : MonoBehaviour
     {
         if (collision.gameObject.layer == 7)
         {
-            ManagerScript.instance.BattleScene(collision.gameObject.GetComponent<EnemyScript>().stats, collision.gameObject.GetComponent<EnemyScript>().prefab);
+            if (!canBattle)
+            {
+                collision.gameObject.SetActive(false);
+                return;
+            }
+            FindFirstObjectByType<AudioManager>().Stop("OST");
+            FindFirstObjectByType<AudioManager>().Play("Battle!");
+            ManagerScript.instance.BattleScene(collision.gameObject.GetComponent<EnemyScript>().stats, collision.gameObject.GetComponent<EnemyScript>().prefab, collision.gameObject, gameObject.transform);
         }
         interact_target = collision.gameObject;
     }

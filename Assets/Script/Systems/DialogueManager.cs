@@ -27,6 +27,7 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue(BaseText dialogue)
     {
         active = true;
+        FindFirstObjectByType<AudioManager>().Play("Interact");
 
         nameText.text = dialogue.name;
 
@@ -58,6 +59,7 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
+        FindFirstObjectByType<AudioManager>().Play("Dia_Scroll");
         string sentence = sentences.Dequeue();
 
         dialogueText.text = sentence;

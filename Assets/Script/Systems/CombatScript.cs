@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public enum BattleState
 {
@@ -33,6 +34,8 @@ public class CombatScript : MonoBehaviour
 
     public GameObject enemyPrefab;
     [SerializeField] GameObject menuBox;
+    [SerializeField] GameObject selfHPBox;
+    [SerializeField] GameObject enemHPBox;
 
     void Start()
     {
@@ -52,6 +55,8 @@ public class CombatScript : MonoBehaviour
 
         enemyDialogue = enemyPrefab.GetComponent<BattleDialogue>();
         enemyPrefab.GetComponent<BattleDialogue>().TriggerDialogue(0);
+        selfHPBox.GetComponentInChildren<Text>().text = "Ewan's HP: "+ "\n" + Math.Round(playerHealth);
+        enemHPBox.GetComponentInChildren<Text>().text = "Enemy HP: " + "\n" + Math.Round(enemyHealth);
         yield return new WaitForSeconds(2f);
         state = BattleState.PLAYERTURN;
         //PlayerTurn();
@@ -86,14 +91,17 @@ public class CombatScript : MonoBehaviour
         //check enemy dead
         if (enemyHealth <= 0)
         {
+            FindFirstObjectByType<AudioManager>().Stop("OST");
+            FindFirstObjectByType<AudioManager>().Play("Victory");
             state = BattleState.WON;
             enemyPrefab.GetComponent<BattleDialogue>().TriggerDialogue(5);
             yield return new WaitForSeconds(3f);
             ManagerScript.instance.LevelUp();
-            SceneManager.LoadScene(0);
+            ManagerScript.instance.OverworldScene();
         }
         else
         {
+            enemHPBox.GetComponentInChildren<Text>().text = "Enemy HP: " + "\n" + Math.Round(enemyHealth); 
             EnemyTurn();
         }
         
@@ -132,12 +140,16 @@ public class CombatScript : MonoBehaviour
         playerHealth -= EnemyDamageCalculation(enemyStats, enemyTurn, playerStats);
         if (playerHealth <= 0)
         {
+            FindFirstObjectByType<AudioManager>().Stop("OST");
+            FindFirstObjectByType<AudioManager>().Play("Loss");
             state = BattleState.LOST;
             enemyPrefab.GetComponent<BattleDialogue>().TriggerDialogue(4);
             yield return new WaitForSeconds(3f);
-            Application.Quit();
+            SceneManager.LoadScene(0);
         }
         yield return new WaitForSeconds(3f);
+        FindFirstObjectByType<AudioManager>().Play("DamageLow");
+        selfHPBox.GetComponentInChildren<Text>().text = "Ewan's HP: " + "\n" + Math.Round(playerHealth);
         state = BattleState.PLAYERTURN;
     }
 
@@ -155,6 +167,11 @@ public class CombatScript : MonoBehaviour
         if (isCritical)
         {
             baseDMG = Mathf.Round(baseDMG * 1.5f);
+            FindFirstObjectByType<AudioManager>().Play("DamageHigh");
+        }
+        else
+        {
+            FindFirstObjectByType<AudioManager>().Play("DamageLow");
         }
         //output
         output = Convert.ToInt32(baseDMG);
